@@ -95,7 +95,7 @@ in
   sound.enable = true;
   hardware.pulseaudio.enable = true;
 
-  # Never update this line, even if you upgrade your nixos versio
+  # Never update this line, even if you upgrade your nixos version
   system.stateVersion = "21.11";
 
   # Users
@@ -108,12 +108,12 @@ in
           (smosModule + "/nix/home-manager-module.nix")
         ];
         home = {
-          # Never update this line, even if you upgrade your nixos versio
+          # Never update this line, even if you upgrade your nixos version
           stateVersion = "21.11";
           packages = with pkgs; [
             # arandr
             # cacert
-            # fzf
+            fzf
             git
             # gnupg
             # ncdu
@@ -135,6 +135,8 @@ in
                 # Set keyboard layout
                 xmodmap ${./keyboards/kinesis}
 
+                ${pkgs.redshift}/bin/redshift -b 0.9:0.1 -t 4000:4000 &
+
                 # Actually start xmonad
                 exec xmonad
               '';
@@ -149,6 +151,7 @@ in
           git.enable = true;
           vim.enable = true;
           chromium.enable = true;
+          # urxvt.enable = true;
           smos = {
             enable = true;
             backup.enable = true;
