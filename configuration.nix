@@ -127,8 +127,8 @@ in
             pavucontrol
           ];
           file = {
-            ".xinitrc" = {
-              text = ''
+            ".Xresources".source = ./Xresources;
+            ".xinitrc".text = ''
                 # Set retype speed
                 xset r rate 250 30
 
@@ -137,10 +137,12 @@ in
 
                 ${pkgs.redshift}/bin/redshift -b 0.9:0.1 -t 4000:4000 &
 
+                # Set urxvt config
+                ${pkgs.xorg.xrdb}/bin/xrdb -merge ~/.Xresources
+
                 # Actually start xmonad
                 exec xmonad
-              '';
-            };
+            '';
           };
         };
 
