@@ -49,18 +49,6 @@ in
     wireless = {
       enable = true;
     };
-    extraHosts = lib.strings.concatMapStrings (h: "127.0.0.1 " + h + "\n")
-      [ "1movies.to"
-        "123moviesfree.net"
-        "ww3.123movies.domains"
-        "facebook.com"
-        "netflix.com"
-        #"youtube.com"
-        "tinder.com"
-        #"mail.google.com"
-        "rappi.com.co"
-        "newyorkpizza.be"
-      ];
   };
 
   nix = {
@@ -95,7 +83,7 @@ in
   sound.enable = true;
   hardware.pulseaudio.enable = true;
 
-  # Never update this line, even if you upgrade your nixos version
+  # Never update this line, even if you upgrade your nixos versio
   system.stateVersion = "21.11";
 
   # Users
@@ -107,15 +95,13 @@ in
         imports = [
           (smosModule + "/nix/home-manager-module.nix")
         ];
-
         home = {
-          # Never update this line, even if you upgrade your nixos version
+          # Never update this line, even if you upgrade your nixos versio
           stateVersion = "21.11";
           packages = with pkgs; [
             # arandr
             # cacert
-            entr
-            fzf
+            # fzf
             git
             # gnupg
             # ncdu
@@ -124,9 +110,9 @@ in
             tree
             stack
             cachix
+            rxvt-unicode
             xorg.xmodmap # For changing the keyboard layout
             pavucontrol
-            rxvt-unicode
           ];
           file = {
             ".xinitrc" = {
@@ -135,10 +121,7 @@ in
                 xset r rate 250 30
 
                 # Set keyboard layout
-                xmodmap ${../keyboards/kinesis}
-
-                # Redshift
-                ${pkgs.redshift}/bin/redshift -b 0.9:0.1 -t 4000:4000
+                xmodmap ${./keyboards/kinesis}
 
                 # Actually start xmonad
                 exec xmonad
@@ -154,13 +137,11 @@ in
           git.enable = true;
           vim.enable = true;
           chromium.enable = true;
-          # urxvt.enable = true;
           smos = {
             enable = true;
             backup.enable = true;
           };
         };
-
         xsession.windowManager.xmonad = {
           enable = true;
           config = pkgs.writeText "xmonad.hs" ''

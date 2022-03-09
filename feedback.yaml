@@ -1,0 +1,3 @@
+loops:
+  test: nix-build --no-out-link
+  VM: $(nix-build test.nix -A driverInteractive)/bin/nixos-test-driver -I
