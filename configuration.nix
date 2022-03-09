@@ -49,6 +49,18 @@ in
     wireless = {
       enable = true;
     };
+    extraHosts = lib.strings.concatMapStrings (h: "127.0.0.1 " + h + "\n")
+      [ "1movies.to"
+        "123moviesfree.net"
+        "ww3.123movies.domains"
+        "facebook.com"
+        "netflix.com"
+        #"youtube.com"
+        "tinder.com"
+        #"mail.google.com"
+        "rappi.com.co"
+        "newyorkpizza.be"
+      ];
   };
 
   nix = {
