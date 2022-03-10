@@ -35,6 +35,7 @@ in
       nick = {
         password = "nick";
         isNormalUser = true;
+        shell = pkgs.zsh;
         extraGroups = [
           "wheel"
         ];
@@ -127,7 +128,7 @@ in
             pavucontrol
           ];
           file = {
-            ".Xresources".source = ./Xresources;
+            ".Xresources".source = ./dotfiles/Xresources;
             ".xinitrc".text = ''
                 # Set retype speed
                 xset r rate 250 30
@@ -143,6 +144,10 @@ in
                 # Actually start xmonad
                 exec xmonad
             '';
+            ".zshenv".source = ./dotfiles/zshenv;
+            ".zshrc".source = ./dotfiles/zshrc;
+            ".functions/functions".source = ./dotfiles/functions;
+            ".variables/variables".source = ./dotfiles/variables;
           };
         };
 
@@ -153,7 +158,6 @@ in
           git.enable = true;
           vim.enable = true;
           chromium.enable = true;
-          # urxvt.enable = true;
           smos = {
             enable = true;
             backup.enable = true;
