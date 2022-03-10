@@ -147,10 +147,9 @@ in
                 # Actually start xmonad
                 exec xmonad
             '';
-            ".zshenv".source = ./dotfiles/zshenv;
-            ".zshrc".source = ./dotfiles/zshrc;
-            ".functions/functions".source = ./dotfiles/functions;
-            ".variables/variables".source = ./dotfiles/variables;
+            # ".zshenv".source = ./dotfiles/zshenv;
+            # ".functions/functions".source = ./dotfiles/functions;
+            # ".variables/variables".source = ./dotfiles/variables;
           };
         };
 
@@ -162,6 +161,15 @@ in
               enable = true;
               theme = "agnoster";
             };
+            initExtra = ''
+              CASE_SENSITIVE="false"
+              # export CC=$(which cc)
+              # safe_source ~/.aliases/aliases
+              # # No autocorrection
+              # unsetopt correct_all
+              ls -ltr
+              # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+            '';
           };
           ssh.enable = true;
           git.enable = true;
