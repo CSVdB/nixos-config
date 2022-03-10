@@ -5,22 +5,15 @@
 , ...
 }:
 let
-  home-manager = builtins.fetchGit {
-    url = "https://github.com/nix-community/home-manager";
-    rev = "2860d7e3bb350f18f7477858f3513f9798896831";
-    ref = "release-21.11";
-  };
-  smosModule = builtins.fetchGit {
-    url = "https://github.com/NorfairKing/smos";
-    rev = "82707699b446bc431f5233e5dc18c7ec3dd679fd";
-    ref = "release";
-  };
+  sources = import ./nix/sources.nix;
+  home-manager = sources.home-manager + "/nixos/default.nix";
+  smosModule = sources.smos + "/nix/home-manager-module.nix";
   menlo-for-powerline = import ./menlo-for-powerline.nix pkgs;
 
 in 
 {
   imports =
-    [ (import (home-manager + "/nixos/default.nix") {
+    [ (import home-manager {
       inherit pkgs;
       inherit lib;
       inherit utils;
@@ -109,7 +102,7 @@ in
     users = {
       nick = { pkgs, ... }: {
         imports = [
-          (smosModule + "/nix/home-manager-module.nix")
+          smosModule
         ];
         home = {
           # Never update this line, even if you upgrade your nixos version
