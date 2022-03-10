@@ -1,3 +1,9 @@
+{ pkgs
+, lib
+, config
+, utils
+, ...
+}:
 let
   home-manager = builtins.fetchGit {
     url = "https://github.com/nix-community/home-manager";
@@ -9,14 +15,9 @@ let
     rev = "82707699b446bc431f5233e5dc18c7ec3dd679fd";
     ref = "release";
   };
+  menlo-for-powerline = import ./menlo-for-powerline.nix pkgs;
 
 in 
-{ pkgs
-, lib
-, config
-, utils
-, ...
-}:
 {
   imports =
     [ (import (home-manager + "/nixos/default.nix") {
@@ -25,6 +26,8 @@ in
       inherit utils;
       inherit config;} )
     ];
+
+  fonts.fonts = [ menlo-for-powerline ];
 
   users = {
     mutableUsers = false;
@@ -153,7 +156,13 @@ in
 
         programs = {
           bash.enable = true;
-          zsh.enable = true;
+          zsh = {
+            enable = true;
+            oh-my-zsh = {
+              enable = true;
+              theme = "agnoster";
+            };
+          };
           ssh.enable = true;
           git.enable = true;
           vim.enable = true;
