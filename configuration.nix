@@ -147,7 +147,10 @@ in
         };
 
         programs = {
-          bash.enable = true;
+          bash = {
+            enable = true;
+            initExtra = import ./dotfiles/zshInitExtra.nix;
+          };
           zsh = {
             enable = true;
             oh-my-zsh = {
