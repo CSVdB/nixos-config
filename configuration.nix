@@ -145,6 +145,8 @@ in
             '';
             ".gitconfig".source = ./dotfiles/gitconfig;
             ".gitignore_global".source = ./dotfiles/gitignore_global;
+            ".keyboards/kinesis".source = ./keyboards/kinesis;
+            ".keyboards/lenovo".source = ./keyboards/lenovo;
           };
         };
 
