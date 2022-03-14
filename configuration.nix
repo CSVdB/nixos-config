@@ -151,7 +151,7 @@ in
         programs = {
           bash = {
             enable = true;
-            initExtra = import ./dotfiles/zshInitExtra.nix;
+            initExtra = builtins.readFile ./dotfiles/zshInitExtra;
           };
           zsh = {
             enable = true;
@@ -159,7 +159,7 @@ in
               enable = true;
               theme = "agnoster";
             };
-            initExtra = import ./dotfiles/zshInitExtra.nix;
+            initExtra = builtins.readFile ./dotfiles/zshInitExtra;
           };
           ssh.enable = true;
           git.enable = true;
