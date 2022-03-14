@@ -20,6 +20,8 @@ in
       inherit config;} )
     ];
 
+  nixpkgs.config.allowUnfree = true;
+
   fonts.fonts = [ menlo-for-powerline ];
 
   users = {
@@ -122,6 +124,7 @@ in
             rxvt-unicode
             xorg.xmodmap # For changing the keyboard layout
             pavucontrol
+            google-chrome
           ];
           file = {
             ".Xresources".source = ./dotfiles/Xresources;
