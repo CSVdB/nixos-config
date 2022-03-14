@@ -143,6 +143,8 @@ in
                 # Actually start xmonad
                 exec xmonad
             '';
+            ".gitconfig".source = ./dotfiles/gitconfig;
+            ".gitignore_global".source = ./dotfiles/gitignore_global;
           };
         };
 
