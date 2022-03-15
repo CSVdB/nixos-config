@@ -169,10 +169,7 @@ in
           git.enable = true;
           vim.enable = true;
           chromium.enable = true;
-          smos = {
-            enable = true;
-            backup.enable = true;
-          };
+          smos = import ./dotfiles/smos.nix;
           intray = {
             enable = true;
             config = {
