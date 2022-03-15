@@ -23,6 +23,18 @@
         "url": "https://github.com/nix-community/home-manager/archive/2860d7e3bb350f18f7477858f3513f9798896831.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "intray": {
+        "branch": "master",
+        "description": "GTD Capture tool",
+        "homepage": "https://intray.eu",
+        "owner": "NorfairKing",
+        "repo": "intray",
+        "rev": "b1b4c14c1a4e419d2a1bf96d757780981229a1e2",
+        "sha256": "0j26bq76sc28bbpj7f0ra71a3lzp4vypnaqdrwpmg3i0d5xi688f",
+        "type": "tarball",
+        "url": "https://github.com/NorfairKing/intray/archive/b1b4c14c1a4e419d2a1bf96d757780981229a1e2.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "niv": {
         "branch": "master",
         "description": "Easy dependency management for Nix projects",

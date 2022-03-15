@@ -8,6 +8,7 @@ let
   sources = import ./nix/sources.nix;
   home-manager = sources.home-manager + "/nixos/default.nix";
   smosModule = sources.smos + "/nix/home-manager-module.nix";
+  intrayModule = sources.intray + "/nix/home-manager-module.nix";
   menlo-for-powerline = import ./menlo-for-powerline.nix pkgs;
 
 in 
@@ -105,6 +106,7 @@ in
       nick = { pkgs, ... }: {
         imports = [
           smosModule
+          intrayModule
         ];
         home = {
           # Never update this line, even if you upgrade your nixos version
@@ -170,6 +172,13 @@ in
           smos = {
             enable = true;
             backup.enable = true;
+          };
+          intray = {
+            enable = true;
+            config = {
+              url = "https://api.intray.eu";
+              username = "Nick";
+            };
           };
         };
         xsession.windowManager.xmonad = {
