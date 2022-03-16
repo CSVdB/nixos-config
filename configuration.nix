@@ -31,7 +31,7 @@ in
     description = "SyncScripts";
     wantedBy = [ "multi-user.target" ];
     serviceConfig.Type = "oneshot";
-    path = [ pkgs.git intrayCli ];
+    path = [ pkgs.git intrayCli pkgs.python3 ];
     script = "${pkgs.bash}/bin/bash /home/nick/.scripts/sync-wf.sh";
   };
 
@@ -167,6 +167,8 @@ in
             ".keyboards/lenovo".source = ./dotfiles/keyboards/lenovo;
             ".scripts/sync-wf.sh".source = ./dotfiles/scripts/sync-wf.sh;
             ".scripts/set-repos.sh".source = ./dotfiles/scripts/set-repos.sh;
+            "Pictures/background/walltext.py".source = ./dotfiles/background/walltext.py;
+            "Pictures/background/hemsworth.jpeg".source = ./dotfiles/background/hemsworth.jpeg;
           };
         };
 
