@@ -135,7 +135,7 @@ in
                 xset r rate 250 30
 
                 # Set keyboard layout
-                xmodmap ${./keyboards/kinesis}
+                xmodmap ${./dotfiles/keyboards/kinesis}
 
                 ${pkgs.redshift}/bin/redshift -b 0.9:0.1 -t 4000:4000 &
 
@@ -147,8 +147,10 @@ in
             '';
             ".gitconfig".source = ./dotfiles/gitconfig;
             ".gitignore_global".source = ./dotfiles/gitignore_global;
-            ".keyboards/kinesis".source = ./keyboards/kinesis;
-            ".keyboards/lenovo".source = ./keyboards/lenovo;
+            ".keyboards/kinesis".source = ./dotfiles/keyboards/kinesis;
+            ".keyboards/lenovo".source = ./dotfiles/keyboards/lenovo;
+            ".scripts/sync-wf.sh".source = ./dotfiles/scripts/sync-wf.sh;
+            ".scripts/set-repos.sh".source = ./dotfiles/scripts/set-repos.sh;
           };
         };
 
