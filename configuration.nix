@@ -10,6 +10,7 @@ let
   smosModule = sources.smos + "/nix/home-manager-module.nix";
   intrayModule = sources.intray + "/nix/home-manager-module.nix";
   menlo-for-powerline = import ./menlo-for-powerline.nix pkgs;
+  intrayCli = (import (sources.intray + "/default.nix")).intray-cli;
 
 in 
 {
@@ -24,6 +25,21 @@ in
   nixpkgs.config.allowUnfree = true;
 
   fonts.fonts = [ menlo-for-powerline ];
+
+  systemd.user.services.syncServices = {
+    enable = true;
+    description = "SyncScripts";
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig.Type = "oneshot";
+    path = [ pkgs.git intrayCli ];
+    script = "${pkgs.bash}/bin/bash /home/nick/.scripts/sync-wf.sh";
+  };
+
+  systemd.user.timers.syncServices = {
+    wantedBy = [ "timers.target" ];
+    partOf = [ "syncServices.service" ];
+    timerConfig.OnCalendar = [ "*-*-* *:*:00" ];
+  };
 
   users = {
     mutableUsers = false;
