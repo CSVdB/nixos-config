@@ -11,6 +11,16 @@ let
   intrayModule = sources.intray + "/nix/home-manager-module.nix";
   menlo-for-powerline = import ./menlo-for-powerline.nix pkgs;
   intrayCli = (import (sources.intray + "/default.nix")).intray-cli;
+  vim-syntax-shakespeare = pkgs.vimUtils.buildVimPluginFrom2Nix rec {
+    name    = "vim-syntax-shakespeare";
+    version = "0.0";
+    src     = pkgs.fetchFromGitHub {
+      owner  = "pbrisbin";
+      repo   = "vim-syntax-shakespeare";
+      rev    = "2f4f61eae55b8f1319ce3a086baf9b5ab57743f3";
+      sha256 = "sha256-sdCXJOvB+vJE0ir+qsT/u1cHNxrksMnqeQi4D/Vg6UA=";
+    };
+  };
 
 in 
 {
@@ -187,7 +197,21 @@ in
           };
           ssh.enable = true;
           git.enable = true;
-          vim.enable = true;
+          vim = {
+            enable = true;
+            plugins = with pkgs.vimPlugins; [
+              vim-ormolu
+              purescript-vim
+              rainbow_parentheses-vim
+              # vim-syntax-shakespeare
+              vim-jsbeautify
+              vim-clang-format
+              YouCompleteMe
+              wombat256-vim
+              vim-syntax-shakespeare
+            ];
+            extraConfig = builtins.readFile ./dotfiles/vimrc;
+          };
           chromium.enable = true;
           smos = import ./dotfiles/smos.nix;
           intray = {
