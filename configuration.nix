@@ -203,7 +203,6 @@ in
               vim-ormolu
               purescript-vim
               rainbow_parentheses-vim
-              # vim-syntax-shakespeare
               vim-jsbeautify
               vim-clang-format
               YouCompleteMe
